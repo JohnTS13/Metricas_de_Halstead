@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Métricas de Halstead</string>
+    <string name="app_title">Métricas de Halstead</string>
+
+    <string name="tab1">Calcular Métricas</string>
+    <string name="tab2">Base de Datos</string>
+    <string name="tab3">Créditos</string>
+
+</resources>
