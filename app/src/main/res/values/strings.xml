@@ -9,4 +9,7 @@
     <string name="title_tab1">Calcular las Métricas de Halstead</string>
     <string name="title_tab2">Base de Datos</string>
     <string name="title_tab3">Créditoss</string>
+    <!-- Tab 1 -->
+    <string name="tab1_text_view1">Seleccionar código a analizar</string>
+    <string name="btn_calcular">Calcular métricas</string>
 </resources>

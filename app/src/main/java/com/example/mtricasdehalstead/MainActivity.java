@@ -4,16 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.widget.Spinner;
 
 import com.example.mtricasdehalstead.Controlador.PagerController;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
-    TabLayout tabLayout;
-    ViewPager viewPager;
-    TabItem tab1, tab2, tab3;
-    PagerController pagerAdapter;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private TabItem tab1, tab2, tab3;
+    private PagerController pagerAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

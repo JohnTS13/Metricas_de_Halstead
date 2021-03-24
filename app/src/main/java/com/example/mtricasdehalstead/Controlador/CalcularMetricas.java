@@ -7,8 +7,16 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.mtricasdehalstead.R;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,6 +34,9 @@ public class CalcularMetricas extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private  View view;
+    private Spinner spinner;
+    private TextView tv1, tv2;
     public CalcularMetricas() {
         // Required empty public constructor
     }
@@ -55,12 +66,21 @@ public class CalcularMetricas extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_calcular_metricas, container, false);
+
+        view = inflater.inflate(R.layout.fragment_calcular_metricas, container, false);
+        spinner = (Spinner)view.findViewById(R.id.codigos);
+
+        String[] value = {"Codigo 1", "Codigo 2", "Codigo 3", "Codigo 4", "Codigo 5"};
+        ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(value));
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.style_spiner, arrayList);
+        spinner.setAdapter(arrayAdapter);
+        return view;
+
     }
 }
