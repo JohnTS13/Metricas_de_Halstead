@@ -12,4 +12,5 @@
     <!-- Tab 1 -->
     <string name="tab1_text_view1">Seleccionar código a analizar</string>
     <string name="btn_calcular">Calcular métricas</string>
+    <string name="tab1_text_subtitulo">Resultados</string>
 </resources>
