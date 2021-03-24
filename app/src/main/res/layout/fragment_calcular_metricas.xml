@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".Controlador.CalcularMetricas">
 
-    <!-- Layout de los componentes para la seleccion del programam desde la bd -->
+    <!-- Layout de los componentes para la seleccion del programam desde la    bd -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
