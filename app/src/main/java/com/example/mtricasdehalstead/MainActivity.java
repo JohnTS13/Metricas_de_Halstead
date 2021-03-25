@@ -10,7 +10,7 @@ import com.example.mtricasdehalstead.Controlador.PagerController;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 
-public class MainActivity extends AppCompatActivity {
+public class  MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private TabItem tab1, tab2, tab3;
