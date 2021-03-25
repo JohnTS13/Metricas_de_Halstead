@@ -8,10 +8,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="title_tab1">Calcular las Métricas de Halstead</string>
     <string name="title_tab2">Base de Datos</string>
-    <string name="title_tab3">Créditoss</string>
+    <string name="title_tab3">Créditos</string>
     <!-- Tab 1 -->
     <string name="tab1_text_view1">Seleccionar código a analizar</string>
     <string name="btn_calcular">Calcular métricas</string>
     <string name="tab1_text_subtituloResultado">Métricas</string>
     <string name="tab1_text_subtituloCodigo">Código</string>
+    <string name="btn_guardar">Guardar en la Base de Datos</string>
 </resources>
