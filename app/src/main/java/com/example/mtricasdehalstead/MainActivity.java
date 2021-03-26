@@ -75,11 +75,6 @@ public class  MainActivity extends AppCompatActivity {
     }
 
     public void Boton_Seleccionado(View view) {
-
-        /*String cadena = "";
-
-        cadena = "public class ejercicio52 { ++ class ";
-        Log.d("Cadena", "Cadena: "+cadena);*/
         Log.d("PRUEBA", "*** KARLA **");
         CalcularMetricas.Boton();
     }
