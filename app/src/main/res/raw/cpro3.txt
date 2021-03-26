@@ -1,17 +1,17 @@
 public class ejemplo24 {
 public static void main(String[] args) {
 Scanner teclado=new Scanner(System.in);
-int mat ,pro = 0, cal , inc ;
+int mat , pro = 0, cal , inc ;
 System.out.printf("ingrese matricula: ");
 mat=teclado.nextInt();
-for(inc = 1 ;i <= 5 ; ++ inc )
+for ( inc = 1 ;i <= 5 ; ++ inc )
 {
 System.out.printf("ingrese calificacion "+i+": ");
 cal = teclado.nextInt() ;
 pro += cal ;
 }
-pro = pro/5 ;       
-if(pro>=6)
+pro = pro / 5 ;       
+if ( pro >= 6)
 System.out.printf("\nmatricula= "+mat+"\npromedio= "+pro+"\nAPROVADO");
 else
 System.out.printf("\nmatricula= "+mat+"\npromedio= "+pro+"\nREPROVADO");
