@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -34,9 +35,13 @@ public class CalcularMetricas extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private  View view;
+    private View view;
     private Spinner spinner;
-    private TextView tv1, tv2;
+    private TextView tv1, tv2, textCodigo;
+
+    private EditText textN1, textn1, textN2, textn2, textN, textn, textV, textD, textL, textE, textT, textB;
+
+    private Button btnCalcular;
     public CalcularMetricas() {
         // Required empty public constructor
     }
@@ -74,8 +79,41 @@ public class CalcularMetricas extends Fragment {
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_calcular_metricas, container, false);
+        textCodigo = (TextView)view.findViewById(R.id.textCodigo);
+        textN1 = (EditText)view.findViewById(R.id.editTextN1);
+        textn1 = (EditText)view.findViewById(R.id.editTextTextn1);
+        textN2 = (EditText)view.findViewById(R.id.editTextTextN2);
+        textn2 = (EditText)view.findViewById(R.id.editTextTextn2);
+        textN = (EditText)view.findViewById(R.id.editTextTextN);
+        textn = (EditText)view.findViewById(R.id.editTextTextn);
+        textV = (EditText)view.findViewById(R.id.editTextTextV);
+        textD = (EditText)view.findViewById(R.id.editTextTextD);
+        textL = (EditText)view.findViewById(R.id.editTextTextL);
+        textE = (EditText)view.findViewById(R.id.editTextTextE);
+        textT = (EditText)view.findViewById(R.id.editTextTextT);
+        textB = (EditText)view.findViewById(R.id.editTextTextB);
         spinner = (Spinner)view.findViewById(R.id.codigos);
 
+        btnCalcular = (Button)view.findViewById(R.id.btnCalcular);
+
+        btnCalcular.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textCodigo.setText("AQUI VA TODO EL CODIGO");
+                textN1.setText("Aqui va N1");
+                textn1.setText("Aqui va N1");
+                textN2.setText("Aqui va N2");
+                textn2.setText("Aqui va n2");
+                textN.setText("Aqui va N");
+                textn.setText("Aqui va n");
+                textV.setText("Aqui va V");
+                textD.setText("Aqui va D");
+                textL.setText("Aqui va L");
+                textE.setText("Aqui va E");
+                textT.setText("Aqui va T");
+                textB.setText("Aqui va B");
+            }
+        });
         String[] value = {"Codigo 1", "Codigo 2", "Codigo 3", "Codigo 4", "Codigo 5"};
         ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(value));
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.style_spiner, arrayList);
@@ -83,4 +121,6 @@ public class CalcularMetricas extends Fragment {
         return view;
 
     }
+
+
 }

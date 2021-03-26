@@ -7,8 +7,12 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.TableLayout;
 
 import com.example.mtricasdehalstead.R;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,6 +30,11 @@ public class BaseDatos extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private View view;
+    private TableLayout tableLayout;
+    private String[]encabezado = {"ID", "N1", "n1", "N2", "n2", "N", "n", "V", "D", "L", "E", "T", "B"};
+    private ArrayList<String[]> row = new ArrayList<>();
+    private int totalFilas;
     public BaseDatos() {
         // Required empty public constructor
     }
@@ -61,6 +70,22 @@ public class BaseDatos extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_base_datos, container, false);
+
+        view = inflater.inflate(R.layout.fragment_base_datos, container, false);
+        tableLayout = (TableLayout)view.findViewById(R.id.table);
+        Table tabla =  new Table(tableLayout, getContext());
+        tabla.addEncabezado(encabezado);
+        tabla.addDatos(getResultados(), totalFilas);
+        return view;
     }
+
+    private ArrayList<String[]> getResultados(){
+        totalFilas = 9; //Aqui asignarle el numero total de registros que tiene la bd de los resultados
+        for (int i = 0; i < totalFilas; i++){
+            row.add(new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "1", "2", "3"});
+        }
+        return row;
+    }
+
+
 }
