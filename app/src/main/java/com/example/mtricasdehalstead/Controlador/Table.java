@@ -59,11 +59,11 @@ public class Table {
         String info;
         tableLayout.removeAllViews();
         crearEncabezado();
-        for (indexR = 1; indexR <= totalFilas; indexR++){
+        for (indexR = 0; indexR < totalFilas; indexR++){
             newRow();
             for (indexC = 0; indexC < encabezado.length; indexC++){
                 newCell();
-                String[] colums = datos.get(indexR - 1);
+                String[] colums = datos.get(indexR );
                 info = (indexC < colums.length)?colums[indexC]:"";
                 textCell.setText(info);
                 tableRow.addView(textCell,newTableRowParams());
@@ -74,8 +74,9 @@ public class Table {
 
     private TableRow.LayoutParams newTableRowParams(){
         TableRow.LayoutParams params = new TableRow.LayoutParams();
-        params.setMargins(1,1,1,1);
-        params.weight = 1;
+        params.setMargins(14,3,30,3);
+        params.weight = 100;
+        //params.height = 10;
         return params;
     }
 }

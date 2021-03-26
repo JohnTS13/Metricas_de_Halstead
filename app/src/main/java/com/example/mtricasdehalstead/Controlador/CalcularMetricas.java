@@ -2,8 +2,10 @@ package com.example.mtricasdehalstead.Controlador;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -63,9 +65,6 @@ public class CalcularMetricas extends Fragment {
     private EditText textN1, textn1, textN2, textn2, textN, textn, textV, textD, textL, textE, textT, textB;
 
     private Button btnCalcular, btnGuardar;
-    public CalcularMetricas() {
-        // Required empty public constructor
-    }
 
     /**
      * Use this factory method to create a new instance of
@@ -85,6 +84,7 @@ public class CalcularMetricas extends Fragment {
         return fragment;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public static void Boton(String Codigo) {
         Limpiar();
         Log.d("Cadena", "Cadena: "+Codigo);
@@ -113,6 +113,7 @@ public class CalcularMetricas extends Fragment {
         Operandos.clear();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private static void Calcular_méticas() {
         String v;
         /*n = n1 + n2; //Vocabulario del programa P
@@ -126,12 +127,12 @@ public class CalcularMetricas extends Fragment {
 
         n = n1 + n2; //Vocabulario del programa P
         N = N1 + N2; // Longitud del programa P
-        V = Math.round((N * (Math.log(n) / Math.log(2)))*100.0)/100.0; // Volumen del programa P
-        D =  Math.round(((n1/2) * (N2/n2))*100.0)/100.0; // Dificultad del programa
-        L = Math.round((1/D)*100)/100d;// Nivel del programa
-        E = Math.round((D * V)*100.0)/100.0;//Esfuerzo de implementación
-        T = Math.round((E/18)*100.0)/100.0; // Tiempo de implementación
-        B = Math.round(((Math.pow(E, (2/3)))/3000)*100.0)/100.0; // N° de bugs liberados
+        V = N * (Math.log(n) / Math.log(2)); // Volumen del programa P
+        D =  ((n1/(2 * 1.0)) + (N2/(n2 * 1.0))); // Dificultad del programa
+        L = (1.0/D);// Nivel del programa
+        E = (D * (V* 1.0));//Esfuerzo de implementación
+        T = (E/18.0); // Tiempo de implementación
+        B = (Math.pow(E, (2/3.0)))/3000.0; // N° de bugs liberados
 
 
         /*Log.d("n", "n(Vocabulario) = "+n);
@@ -260,26 +261,27 @@ public class CalcularMetricas extends Fragment {
         spinner = (Spinner)view.findViewById(R.id.codigos);
 
         btnCalcular = (Button)view.findViewById(R.id.btnCalcular);
-
         btnGuardar = (Button)view.findViewById(R.id.btnGuardar);
         btnCalcular.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
                 CalcularMetricas.Boton(Codigo);
-                DecimalFormat df = new DecimalFormat("#.00");
+                DecimalFormat df = new DecimalFormat("#0.00");
                 //textCodigo.setText(""+Codigo);
+
                 textN1.setText(""+N1);
                 textn1.setText(""+n1);
                 textN2.setText(""+N2);
                 textn2.setText(""+n2);
                 textN.setText(""+N);
                 textn.setText(""+n);
-                textV.setText(""+V);
-                textD.setText(""+D);
-                textL.setText(""+L);
-                textE.setText(""+E);
-                textT.setText(""+T);
-                textB.setText(""+B);
+                textV.setText(""+df.format(V));
+                textD.setText(""+df.format(D));
+                textL.setText(""+df.format(L));
+                textE.setText(""+df.format(E));
+                textT.setText(""+df.format(T));
+                textB.setText(""+df.format(B));
             }
         });
 

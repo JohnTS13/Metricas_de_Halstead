@@ -36,7 +36,21 @@ public class BaseDatos extends Fragment {
 
     private View view;
     private TableLayout tableLayout;
-    private String[]encabezado = {"ID", "N1", "n1", "N2", "n2", "N", "n", "V", "D", "L", "E", "T", "B"};
+    private String[]encabezado = {
+            "    |         ID     ",
+            "|         N1     ",
+            "|         n1     ",
+            "|         N2     ",
+            "|         n2     ",
+            "|         N      ",
+            "|         n      ",
+            "|         V      ",
+            "|         D      ",
+            "|         L      ",
+            "|         E      ",
+            "|         T      ",
+            "|         B      |    "
+    };
     private ArrayList<String[]> row = new ArrayList<>();
     private int totalFilas;
     private Button btnActualizar;
@@ -86,23 +100,26 @@ public class BaseDatos extends Fragment {
         SQLiteDatabase dataBase = admin.getWritableDatabase();
         Cursor fila = dataBase.rawQuery("select * from resultados", null);
 
+        // Eliminar registros
+        //dataBase.execSQL("delete from resultados");
+
         if (fila.moveToFirst()){
 
             for (int i = 0; i < fila.getCount(); i++){
                 row.add(new String[]{
-                        fila.getString(0),
-                        fila.getString(1),
-                        fila.getString(2),
-                        fila.getString(3),
-                        fila.getString(4),
-                        fila.getString(5),
-                        fila.getString(6),
-                        fila.getString(7),
-                        fila.getString(8),
-                        fila.getString(9),
-                        fila.getString(10),
-                        fila.getString(11),
-                        fila.getString(12)});
+                        "         " + fila.getString(0),
+                        "     " + fila.getString(1),
+                        "     " + fila.getString(2),
+                        "     " + fila.getString(3),
+                        "     " + fila.getString(4),
+                        "     " + fila.getString(5),
+                        "     " + fila.getString(6),
+                        "     " + fila.getString(7),
+                        "     " + fila.getString(8),
+                        "     " + fila.getString(9),
+                        "     " + fila.getString(10),
+                        "     " + fila.getString(11),
+                        "" + fila.getString(12)});
                 fila.moveToNext();
             }
 
@@ -145,7 +162,9 @@ public class BaseDatos extends Fragment {
                                 fila.getString(10),
                                 fila.getString(11),
                                 fila.getString(12)});
+
                         fila.moveToNext();
+                        //System.out.print();
                     }
 
                     //dataBase.close();
