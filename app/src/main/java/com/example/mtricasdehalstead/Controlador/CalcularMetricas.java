@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.mtricasdehalstead.R;
 
+import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -297,23 +298,28 @@ public class CalcularMetricas extends Fragment {
                 {
                     case "Codigo 1" :
                         Codigo = "ARCHIVO 1";
+                        //CargarDatos("CPRO1");
                         textCodigo.setText(""+Codigo);
                         break; // break es opcional
 
                     case "Codigo 2" :
                         Codigo = "ARCHIVO 2";
+                        //CargarDatos("CPRO2");
                         textCodigo.setText(""+Codigo);
                         break; // break es opcional
                     case "Codigo 3" :
                         Codigo = "ARCHIVO 3";
+                        //CargarDatos("CPRO3");
                         textCodigo.setText(""+Codigo);
                         break; // break es opcional
                     case "Codigo 4" :
                         Codigo = "ARCHIVO 4";
+                        //CargarDatos("CPRO4");
                         textCodigo.setText(""+Codigo);
                         break; // break es opcional
                     case "Codigo 5" :
                         Codigo = "ARCHIVO 5";
+                        //CargarDatos("CPRO5");
                         textCodigo.setText(""+Codigo);
                         break; // break es opcional
 
@@ -321,6 +327,10 @@ public class CalcularMetricas extends Fragment {
                         // Declaraciones
                 }
             }
+
+            /*private void CargarDatos(String cpro1) {
+                InputStream is = this.getResources().openRawResource(R.raw.cpro1);
+            }*/
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
