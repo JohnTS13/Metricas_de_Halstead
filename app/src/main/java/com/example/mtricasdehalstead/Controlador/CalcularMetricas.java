@@ -20,7 +20,10 @@ import android.widget.Toast;
 
 import com.example.mtricasdehalstead.R;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -81,13 +84,11 @@ public class CalcularMetricas extends Fragment {
         return fragment;
     }
 
-    public static void Boton() {
-        String cadena = "";
+    public static void Boton(String Codigo) {
         Limpiar();
-        cadena = "public class ejercicio52 { ++ class ";
-        Log.d("Cadena", "Cadena: "+cadena);
-        Imprime(cadena);
-        Saltos(cadena);
+        Log.d("Cadena", "Cadena: "+Codigo);
+        Imprime(Codigo);
+        Saltos(Codigo);
         N1 = UnaVez(Operadores);
         N2 = UnaVez(Operandos);
         Log.d("n1", "n1: "+n1);
@@ -261,7 +262,7 @@ public class CalcularMetricas extends Fragment {
         btnCalcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CalcularMetricas.Boton();
+                CalcularMetricas.Boton(Codigo);
                 //textCodigo.setText(""+Codigo);
                 textN1.setText(""+N1);
                 textn1.setText(""+n1);
@@ -361,45 +362,105 @@ public class CalcularMetricas extends Fragment {
                 /*Toast.makeText(parent.getContext(),
                         "Seleccionado"+parent.getItemAtPosition(position).toString(), Toast.LENGTH_LONG).show();*/
                 Programa = parent.getItemAtPosition(position).toString();
-                Selec_Archivo(Programa);
+                try {
+                    Selec_Archivo(Programa);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
             }
 
-            private void Selec_Archivo(String codigo) {
+            private void Selec_Archivo(String codigo) throws IOException {
                 Codigo = " CÓDIGO ";
                 textCodigo.setText(""+Codigo);
                 switch(codigo)
                 {
                     case "Codigo 1" :
-                        Codigo = "ARCHIVO 1";
-                        //CargarDatos("CPRO1");
+                        CargarDatos(1);
                         textCodigo.setText(""+Codigo);
                         break; // break es opcional
 
                     case "Codigo 2" :
-                        Codigo = "ARCHIVO 2";
-                        //CargarDatos("CPRO2");
+                        CargarDatos(2);
                         textCodigo.setText(""+Codigo);
                         break; // break es opcional
                     case "Codigo 3" :
-                        Codigo = "ARCHIVO 3";
-                        //CargarDatos("CPRO3");
+                        CargarDatos(3);
                         textCodigo.setText(""+Codigo);
                         break; // break es opcional
                     case "Codigo 4" :
-                        Codigo = "ARCHIVO 4";
-                        //CargarDatos("CPRO4");
+                        CargarDatos(4);
                         textCodigo.setText(""+Codigo);
                         break; // break es opcional
                     case "Codigo 5" :
-                        Codigo = "ARCHIVO 5";
-                        //CargarDatos("CPRO5");
+                        CargarDatos(5);
                         textCodigo.setText(""+Codigo);
                         break; // break es opcional
 
                     default :
                         // Declaraciones
                 }
+            }
+
+            private void CargarDatos(int s) throws IOException {
+                String linea="";
+                InputStream archivo;
+                BufferedReader buffer;
+
+                switch(s)
+                {
+                    case 1 :
+                        archivo = getResources().openRawResource(R.raw.cpro1);
+                        buffer = new BufferedReader(new InputStreamReader(archivo));
+                        if(archivo != null){
+                            while ((linea = buffer.readLine()) != null){
+                                Codigo = Codigo + linea;
+                            }
+                        }
+                        break; // break es opcional
+
+                    case 2 :
+                        archivo = getResources().openRawResource(R.raw.cpro2);
+                        buffer = new BufferedReader(new InputStreamReader(archivo));
+                        if(archivo != null){
+                            while ((linea = buffer.readLine()) != null){
+                                Codigo = Codigo + linea;
+                            }
+                        }
+                        break; // break es opcional
+
+                    case 3 :
+                        archivo = getResources().openRawResource(R.raw.cpro3);
+                        buffer = new BufferedReader(new InputStreamReader(archivo));
+                        if(archivo != null){
+                            while ((linea = buffer.readLine()) != null){
+                                Codigo = Codigo + linea;
+                            }
+                        }
+                        break; // break es opcional
+                    case 4 :
+                        archivo = getResources().openRawResource(R.raw.cpro4);
+                        buffer = new BufferedReader(new InputStreamReader(archivo));
+                        if(archivo != null){
+                            while ((linea = buffer.readLine()) != null){
+                                Codigo = Codigo + linea;
+                            }
+                        }
+                        break; // break es opcional
+                    case 5 :
+                        archivo = getResources().openRawResource(R.raw.cpro5);
+                        buffer = new BufferedReader(new InputStreamReader(archivo));
+                        if(archivo != null){
+                            while ((linea = buffer.readLine()) != null){
+                                Codigo = Codigo + linea;
+                            }
+                        }
+                        break; // break es opcional
+
+                    default :
+                        // Declaraciones
+                }
+
             }
 
             /*private void CargarDatos(String cpro1) {
