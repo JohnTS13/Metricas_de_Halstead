@@ -1,5 +1,7 @@
 package com.example.mtricasdehalstead.Controlador;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -56,7 +58,7 @@ public class CalcularMetricas extends Fragment {
 
     private EditText textN1, textn1, textN2, textn2, textN, textn, textV, textD, textL, textE, textT, textB;
 
-    private Button btnCalcular;
+    private Button btnCalcular, btnGuardar;
     public CalcularMetricas() {
         // Required empty public constructor
     }
@@ -255,6 +257,7 @@ public class CalcularMetricas extends Fragment {
 
         btnCalcular = (Button)view.findViewById(R.id.btnCalcular);
 
+        btnGuardar = (Button)view.findViewById(R.id.btnGuardar);
         btnCalcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -272,6 +275,77 @@ public class CalcularMetricas extends Fragment {
                 textE.setText(""+E);
                 textT.setText(""+T);
                 textB.setText(""+B);
+            }
+        });
+
+        btnGuardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(getContext(), "administracion", null, 1);
+                SQLiteDatabase dataBase = admin.getWritableDatabase();
+
+                String N1 = textN1.getText().toString();
+                String n1 = textn1.getText().toString();
+                String N2 = textN2.getText().toString();
+                String n2 = textn2.getText().toString();
+                String N = textN.getText().toString();
+                String n = textn.getText().toString();
+                String V = textV.getText().toString();
+                String D = textD.getText().toString();
+                String L = textL.getText().toString();
+                String E = textE.getText().toString();
+                String T = textT.getText().toString();
+                String B = textB.getText().toString();
+
+                if (!N1.isEmpty()){
+                    ContentValues registro = new ContentValues();
+
+                    //registro.put("ID", 0);
+                    registro.put("N1", N1);
+                    registro.put("n_1", n1);
+                    registro.put("N2", N2);
+                    registro.put("n_2", n2);
+                    registro.put("N", N);
+                    registro.put("n_", n);
+                    registro.put("V", V);
+                    registro.put("D", D);
+                    registro.put("L", L);
+                    registro.put("E", E);
+                    registro.put("T", T);
+                    registro.put("B", B);
+
+                    dataBase.insert("resultados", null, registro);
+                    dataBase.close();
+
+                    //limpiar campos
+
+                    textCodigo.setText("");
+                    textN1.setText("");
+                    textn1.setText("");
+                    textN2.setText("");
+                    textn2.setText("");
+                    textN.setText("");
+                    textn.setText("");
+                    textV.setText("");
+                    textD.setText("");
+                    textL.setText("");
+                    textE.setText("");
+                    textT.setText("");
+                    textB.setText("");
+
+
+                    CharSequence text = "Métricas guardadas exitosamente";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(getContext(), text, duration);
+                    toast.show();
+                } else {
+                    CharSequence text = "Seleccione un código a analizar";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(getContext(), text, duration);
+                    toast.show();
+                }
             }
         });
         String[] value = {"Codigo 1", "Codigo 2", "Codigo 3", "Codigo 4", "Codigo 5"};
@@ -341,6 +415,5 @@ public class CalcularMetricas extends Fragment {
         return view;
 
     }
-
 
 }

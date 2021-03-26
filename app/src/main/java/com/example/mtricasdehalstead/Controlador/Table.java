@@ -25,7 +25,7 @@ public class Table {
 
     public void addEncabezado (String[]encabezado){
         this.encabezado = encabezado;
-        crearEncabezado();
+
     }
 
     public void addDatos(ArrayList<String[]>datos, int totalFilas){
@@ -57,6 +57,8 @@ public class Table {
 
     private void crearDataTable (){
         String info;
+        tableLayout.removeAllViews();
+        crearEncabezado();
         for (indexR = 1; indexR <= totalFilas; indexR++){
             newRow();
             for (indexC = 0; indexC < encabezado.length; indexC++){
