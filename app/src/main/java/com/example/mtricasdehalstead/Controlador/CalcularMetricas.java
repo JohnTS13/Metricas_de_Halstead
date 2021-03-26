@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -91,11 +92,6 @@ public class CalcularMetricas extends Fragment {
         Saltos(Codigo);
         N1 = UnaVez(Operadores);
         N2 = UnaVez(Operandos);
-        Log.d("n1", "n1: "+n1);
-        Log.d("n1", "n2: "+n2);
-        Log.d("N1", "N1: "+N1);
-        Log.d("N2", "N2: "+N2);
-        Log.d("titulo", "*** MÉTRICAS **");
         Calcular_méticas ();
 
     }
@@ -118,33 +114,31 @@ public class CalcularMetricas extends Fragment {
     }
 
     private static void Calcular_méticas() {
+        DecimalFormat df = new DecimalFormat("#.00");
+        String v;
         n = n1 + n2; //Vocabulario del programa P
         N = N1 + N2; // Longitud del programa P
-        V = N * (Math.log(n) / Math.log(2)); // Volumen del programa P
-        D = (n1/2) * (N2/n2); // Dificultad del programa
-        L = 1/D ; // Nivel del programa
-        E = D * V;//Esfuerzo de implementación
-        T = E/18; // Tiempo de implementación
-        B = (Math.pow(E, (2/3)))/3000; // N° de bugs liberados
+        V = Math.round((N * (Math.log(n) / Math.log(2)))*100.0)/100.0; // Volumen del programa P
+        D =  Math.round(((n1/2) * (N2/n2))*100.0)/100.0; // Dificultad del programa
+        L = Math.round((1/D)*100)/100d;// Nivel del programa
+        E = Math.round((D * V)*100.0)/100.0;//Esfuerzo de implementación
+        T = Math.round((E/18)*100.0)/100.0; // Tiempo de implementación
+        B = Math.round(((Math.pow(E, (2/3)))/3000)*100.0)/100.0; // N° de bugs liberados
 
-        Log.d("n", "n(Vocabulario) = "+n);
+        /*Log.d("n", "n(Vocabulario) = "+n);
         Log.d("N", "N(Longitud) = "+N);
         Log.d("V", "V(Volumen) = "+V);
         Log.d("D", "D(Dificultad) = "+D);
         Log.d("L", "L(Nivel) = "+L);
         Log.d("E", "E(Esfuerzo) = "+N1);
         Log.d("T", "T(Tiempo) = "+N2);
-        Log.d("B", "B(Bugs) = "+N2);
+        Log.d("B", "B(Bugs) = "+N2);*/
     }
 
     private static int UnaVez(List<String> operadores) {
         Set<String> hashSet = new HashSet<String>(operadores);
         operadores.clear();
         operadores.addAll(hashSet);
-        Log.d("vector", "Vector sin repetición");
-        for (String s : operadores) {
-            Log.d("imprimir V", "Vec: "+s);
-        }
         return operadores.size();
     }
 
@@ -191,12 +185,12 @@ public class CalcularMetricas extends Fragment {
                 (txtTemp1.matches("^if")) || (txtTemp1.matches("^else")) || (txtTemp1.matches("^while")) || (txtTemp1.matches("^for")) ||
                 (txtTemp1.matches("null")) || (txtTemp1.matches("false")) || (txtTemp1.matches("true")) || (txtTemp1.matches("this"))){
 
-            Log.d("Operado", "OPERADORES = " +txtTemp1);
+            //Log.d("Operado", "OPERADORES = " +txtTemp1);
             Operadores.add(txtTemp1);
             n1= n1+1;
         }
         else if((txtTemp1.matches("(?:([a-z]||[A-Z])([a-z0-9_]||[A-Z0-9])*)"))){
-            Log.d("Operando", "OPERANDOS = " +txtTemp1);
+            //Log.d("Operando", "OPERANDOS = " +txtTemp1);
             Operandos.add(txtTemp1);
             n2= n2+1;
         }
@@ -371,7 +365,8 @@ public class CalcularMetricas extends Fragment {
             }
 
             private void Selec_Archivo(String codigo) throws IOException {
-                Codigo = " CÓDIGO ";
+                //Codigo = " CÓDIGO ";
+                Codigo ="";
                 textCodigo.setText(""+Codigo);
                 switch(codigo)
                 {
@@ -414,7 +409,7 @@ public class CalcularMetricas extends Fragment {
                         buffer = new BufferedReader(new InputStreamReader(archivo));
                         if(archivo != null){
                             while ((linea = buffer.readLine()) != null){
-                                Codigo = Codigo + linea;
+                                Codigo = Codigo + linea + "\n";
                             }
                         }
                         break; // break es opcional
@@ -424,7 +419,7 @@ public class CalcularMetricas extends Fragment {
                         buffer = new BufferedReader(new InputStreamReader(archivo));
                         if(archivo != null){
                             while ((linea = buffer.readLine()) != null){
-                                Codigo = Codigo + linea;
+                                Codigo = Codigo + linea + "\n";
                             }
                         }
                         break; // break es opcional
@@ -434,7 +429,7 @@ public class CalcularMetricas extends Fragment {
                         buffer = new BufferedReader(new InputStreamReader(archivo));
                         if(archivo != null){
                             while ((linea = buffer.readLine()) != null){
-                                Codigo = Codigo + linea;
+                                Codigo = Codigo + linea + "\n";
                             }
                         }
                         break; // break es opcional
@@ -443,7 +438,7 @@ public class CalcularMetricas extends Fragment {
                         buffer = new BufferedReader(new InputStreamReader(archivo));
                         if(archivo != null){
                             while ((linea = buffer.readLine()) != null){
-                                Codigo = Codigo + linea;
+                                Codigo = Codigo + linea + "\n";
                             }
                         }
                         break; // break es opcional
@@ -452,7 +447,7 @@ public class CalcularMetricas extends Fragment {
                         buffer = new BufferedReader(new InputStreamReader(archivo));
                         if(archivo != null){
                             while ((linea = buffer.readLine()) != null){
-                                Codigo = Codigo + linea;
+                                Codigo = Codigo + linea + "\n";
                             }
                         }
                         break; // break es opcional
@@ -462,10 +457,6 @@ public class CalcularMetricas extends Fragment {
                 }
 
             }
-
-            /*private void CargarDatos(String cpro1) {
-                InputStream is = this.getResources().openRawResource(R.raw.cpro1);
-            }*/
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {

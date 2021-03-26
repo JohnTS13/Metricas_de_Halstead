@@ -7,15 +7,15 @@ int inc ,nu ;
 float sue = 0, total = 0;
 System.out.printf("Numero de empleados: ");
 nu = teclado.nextInt();
-for(inc = 1 ;inc <= nu ; ++ inc) {         System.out.printf("Ingrese sueldo del trabajador nº "+i+": ");
+for(inc = 1 ;inc <= nu ; ++ inc) {         System.out.printf("Ingrese sueldo del trabajador nº "+ inc +": ");
 sue = teclado.nextFloat();
 if ( sue < 1000 )
-nsue [i] =  (float) (sue * 1.15);
+nsue [inc] =  (float) (sue * 1.15);
 if (sue >= 1000 )
-nsue[i]= (float) (sue * 1.12);
-total = total + nsue [i] ; }
+nsue[inc]= (float) (sue * 1.12);
+total = total + nsue [inc] ; }
 System.out.printf("\nLa nomina es: "+total+"\n");
 for ( inc = 1 ;inc <= nu ; ++ inc)
-System.out.printf("El sueldo final del trabajador nº "+i+" es: "+nsue [i]);
+System.out.printf("El sueldo final del trabajador nº "+ inc +" es: "+ nsue [inc]);
 }
 }
