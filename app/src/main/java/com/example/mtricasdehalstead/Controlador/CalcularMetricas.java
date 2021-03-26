@@ -38,6 +38,9 @@ public class CalcularMetricas extends Fragment {
     private static int n1=0, n2=0, N1=0, N2=0;
     private static List<String> Operadores = new ArrayList<String>();
     private static List<String> Operandos = new ArrayList<String>();
+    private static int n = 0, N = 0;
+    private static double V = 0,  D = 0, L = 0, E = 0, T = 0, B = 0;
+
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -91,14 +94,14 @@ public class CalcularMetricas extends Fragment {
     }
 
     private static void Calcular_méticas() {
-        int n = n1 + n2; //Vocabulario del programa P
-        int N = N1 + N2; // Longitud del programa P
-        double V = N * (Math.log(n) / Math.log(2)); // Volumen del programa P
-        double D = (n1/2) * (N2/n2); // Dificultad del programa
-        double L = 1/D ; // Nivel del programa
-        double E = D * V;//Esfuerzo de implementación
-        double T = E/18; // Tiempo de implementación
-        double B = (Math.pow(E, (2/3)))/3000; // N° de bugs liberados
+        n = n1 + n2; //Vocabulario del programa P
+        N = N1 + N2; // Longitud del programa P
+        V = N * (Math.log(n) / Math.log(2)); // Volumen del programa P
+        D = (n1/2) * (N2/n2); // Dificultad del programa
+        L = 1/D ; // Nivel del programa
+        E = D * V;//Esfuerzo de implementación
+        T = E/18; // Tiempo de implementación
+        B = (Math.pow(E, (2/3)))/3000; // N° de bugs liberados
 
         Log.d("n", "n(Vocabulario) = "+n);
         Log.d("N", "N(Longitud) = "+N);
@@ -234,19 +237,20 @@ public class CalcularMetricas extends Fragment {
         btnCalcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                CalcularMetricas.Boton();
                 textCodigo.setText("AQUI VA TODO EL CODIGO");
-                textN1.setText("Aqui va N1");
-                textn1.setText("Aqui va N1");
-                textN2.setText("Aqui va N2");
-                textn2.setText("Aqui va n2");
-                textN.setText("Aqui va N");
-                textn.setText("Aqui va n");
-                textV.setText("Aqui va V");
-                textD.setText("Aqui va D");
-                textL.setText("Aqui va L");
-                textE.setText("Aqui va E");
-                textT.setText("Aqui va T");
-                textB.setText("Aqui va B");
+                textN1.setText(""+N1);
+                textn1.setText(""+n1);
+                textN2.setText(""+N2);
+                textn2.setText(""+n2);
+                textN.setText(""+N);
+                textn.setText(""+n);
+                textV.setText(""+V);
+                textD.setText(""+D);
+                textL.setText(""+L);
+                textE.setText(""+E);
+                textT.setText(""+T);
+                textB.setText(""+B);
             }
         });
         String[] value = {"Codigo 1", "Codigo 2", "Codigo 3", "Codigo 4", "Codigo 5"};

@@ -74,10 +74,10 @@ public class  MainActivity extends AppCompatActivity {
 
     }
 
-    public void Boton_Seleccionado(View view) {
+    /*public void Boton_Seleccionado(View view) {
         Log.d("PRUEBA", "*** KARLA **");
         CalcularMetricas.Boton();
-    }
+    }*/
 
 
 
