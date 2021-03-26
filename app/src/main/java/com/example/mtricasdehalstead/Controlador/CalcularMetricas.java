@@ -8,11 +8,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mtricasdehalstead.R;
 
@@ -35,6 +37,7 @@ public class CalcularMetricas extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static String Codigo= "";
     private static int n1=0, n2=0, N1=0, N2=0;
     private static List<String> Operadores = new ArrayList<String>();
     private static List<String> Operandos = new ArrayList<String>();
@@ -77,7 +80,7 @@ public class CalcularMetricas extends Fragment {
 
     public static void Boton() {
         String cadena = "";
-
+        Limpiar();
         cadena = "public class ejercicio52 { ++ class ";
         Log.d("Cadena", "Cadena: "+cadena);
         Imprime(cadena);
@@ -91,6 +94,23 @@ public class CalcularMetricas extends Fragment {
         Log.d("titulo", "*** MÉTRICAS **");
         Calcular_méticas ();
 
+    }
+
+    private static void Limpiar() {
+        n1=0;
+        n2=0;
+        N1=0;
+        N2=0;
+        n=0;
+        N=0;
+        V=0;
+        D=0;
+        L=0;
+        E=0;
+        T=0;
+        B=0;
+        Operadores.clear();
+        Operandos.clear();
     }
 
     private static void Calcular_méticas() {
@@ -238,7 +258,7 @@ public class CalcularMetricas extends Fragment {
             @Override
             public void onClick(View v) {
                 CalcularMetricas.Boton();
-                textCodigo.setText("AQUI VA TODO EL CODIGO");
+                //textCodigo.setText(""+Codigo);
                 textN1.setText(""+N1);
                 textn1.setText(""+n1);
                 textN2.setText(""+N2);
@@ -257,6 +277,57 @@ public class CalcularMetricas extends Fragment {
         ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(value));
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.style_spiner, arrayList);
         spinner.setAdapter(arrayAdapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            private String Programa;
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                /*Toast.makeText(parent.getContext(),
+                        "Seleccionado"+parent.getItemAtPosition(position).toString(), Toast.LENGTH_LONG).show();*/
+                Programa = parent.getItemAtPosition(position).toString();
+                Selec_Archivo(Programa);
+
+            }
+
+            private void Selec_Archivo(String codigo) {
+                Codigo = " CÓDIGO ";
+                textCodigo.setText(""+Codigo);
+                switch(codigo)
+                {
+                    case "Codigo 1" :
+                        Codigo = "ARCHIVO 1";
+                        textCodigo.setText(""+Codigo);
+                        break; // break es opcional
+
+                    case "Codigo 2" :
+                        Codigo = "ARCHIVO 2";
+                        textCodigo.setText(""+Codigo);
+                        break; // break es opcional
+                    case "Codigo 3" :
+                        Codigo = "ARCHIVO 3";
+                        textCodigo.setText(""+Codigo);
+                        break; // break es opcional
+                    case "Codigo 4" :
+                        Codigo = "ARCHIVO 4";
+                        textCodigo.setText(""+Codigo);
+                        break; // break es opcional
+                    case "Codigo 5" :
+                        Codigo = "ARCHIVO 5";
+                        textCodigo.setText(""+Codigo);
+                        break; // break es opcional
+
+                    default :
+                        // Declaraciones
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         return view;
 
     }
