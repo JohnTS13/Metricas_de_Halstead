@@ -114,8 +114,16 @@ public class CalcularMetricas extends Fragment {
     }
 
     private static void Calcular_méticas() {
-        DecimalFormat df = new DecimalFormat("#.00");
         String v;
+        /*n = n1 + n2; //Vocabulario del programa P
+        N = N1 + N2; // Longitud del programa P
+        V = Math.log(n) / Math.log(2); // Volumen del programa P
+        D = (n1/2) * (N2/n2); // Dificultad del programa
+        L = 1/D;// Nivel del programa
+        E = D * V;//Esfuerzo de implementación
+        T = E/18; // Tiempo de implementación
+        B = Math.pow(E, (2/3))/3000; // N° de bugs liberados*/
+
         n = n1 + n2; //Vocabulario del programa P
         N = N1 + N2; // Longitud del programa P
         V = Math.round((N * (Math.log(n) / Math.log(2)))*100.0)/100.0; // Volumen del programa P
@@ -124,6 +132,7 @@ public class CalcularMetricas extends Fragment {
         E = Math.round((D * V)*100.0)/100.0;//Esfuerzo de implementación
         T = Math.round((E/18)*100.0)/100.0; // Tiempo de implementación
         B = Math.round(((Math.pow(E, (2/3)))/3000)*100.0)/100.0; // N° de bugs liberados
+
 
         /*Log.d("n", "n(Vocabulario) = "+n);
         Log.d("N", "N(Longitud) = "+N);
@@ -257,6 +266,7 @@ public class CalcularMetricas extends Fragment {
             @Override
             public void onClick(View v) {
                 CalcularMetricas.Boton(Codigo);
+                DecimalFormat df = new DecimalFormat("#.00");
                 //textCodigo.setText(""+Codigo);
                 textN1.setText(""+N1);
                 textn1.setText(""+n1);
