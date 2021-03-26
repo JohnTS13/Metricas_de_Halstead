@@ -85,15 +85,32 @@ public class  MainActivity extends AppCompatActivity {
             Saltos(cadena);
             N1 = UnaVez(Operadores);
             N2 = UnaVez(Operandos);
-            Calcular_méticas (n1,n2,N1,N2);
             Log.d("n1", "n1: "+n1);
             Log.d("n1", "n2: "+n2);
             Log.d("N1", "N1: "+N1);
             Log.d("N2", "N2: "+N2);
+            Log.d("titulo", "*** MÉTRICAS **");
+            Calcular_méticas ();
     }
 
-    private void Calcular_méticas(int n1, int n2, int n11, int n21) {
+    private void Calcular_méticas() {
+        int n = n1 + n2; //Vocabulario del programa P
+        int N = N1 + N2; // Longitud del programa P
+        double V = N * (Math.log(n) / Math.log(2)); // Volumen del programa P
+        double D = (n1/2) * (N2/n2); // Dificultad del programa
+        double L = 1/D ; // Nivel del programa
+        double E = D * V;//Esfuerzo de implementación
+        double T = E/18; // Tiempo de implementación
+        double B = (Math.pow(E, (2/3)))/3000; // N° de bugs liberados
 
+        Log.d("n", "n(Vocabulario) = "+n);
+        Log.d("N", "N(Longitud) = "+N);
+        Log.d("V", "V(Volumen) = "+V);
+        Log.d("D", "D(Dificultad) = "+D);
+        Log.d("L", "L(Nivel) = "+L);
+        Log.d("E", "E(Esfuerzo) = "+N1);
+        Log.d("T", "T(Tiempo) = "+N2);
+        Log.d("B", "B(Bugs) = "+N2);
     }
 
     private int UnaVez(List<String> operandos) {
