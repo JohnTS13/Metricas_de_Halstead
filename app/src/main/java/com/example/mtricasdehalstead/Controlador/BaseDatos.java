@@ -1,5 +1,7 @@
 package com.example.mtricasdehalstead.Controlador;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -8,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TableLayout;
+import android.widget.Toast;
 
 import com.example.mtricasdehalstead.R;
 
@@ -35,6 +39,7 @@ public class BaseDatos extends Fragment {
     private String[]encabezado = {"ID", "N1", "n1", "N2", "n2", "N", "n", "V", "D", "L", "E", "T", "B"};
     private ArrayList<String[]> row = new ArrayList<>();
     private int totalFilas;
+    private Button btnActualizar;
     public BaseDatos() {
         // Required empty public constructor
     }
@@ -75,7 +80,89 @@ public class BaseDatos extends Fragment {
         tableLayout = (TableLayout)view.findViewById(R.id.table);
         Table tabla =  new Table(tableLayout, getContext());
         tabla.addEncabezado(encabezado);
-        tabla.addDatos(getResultados(), totalFilas);
+
+        //Traer datos de la BD
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(getContext(), "administracion", null, 1);
+        SQLiteDatabase dataBase = admin.getWritableDatabase();
+        Cursor fila = dataBase.rawQuery("select * from resultados", null);
+
+        if (fila.moveToFirst()){
+
+            for (int i = 0; i < fila.getCount(); i++){
+                row.add(new String[]{
+                        fila.getString(0),
+                        fila.getString(1),
+                        fila.getString(2),
+                        fila.getString(3),
+                        fila.getString(4),
+                        fila.getString(5),
+                        fila.getString(6),
+                        fila.getString(7),
+                        fila.getString(8),
+                        fila.getString(9),
+                        fila.getString(10),
+                        fila.getString(11),
+                        fila.getString(12)});
+                fila.moveToNext();
+            }
+
+            //dataBase.close();
+        } else {
+            CharSequence text = "No hay resultados guardados";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(getContext(), text, duration);
+            toast.show();
+            //dataBase.close();
+        }
+
+        tabla.addDatos(row, fila.getCount());
+        dataBase.close();
+
+        btnActualizar = (Button)view.findViewById(R.id.btnActualizar);
+        btnActualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Traer datos de la BD
+                AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(getContext(), "administracion", null, 1);
+                SQLiteDatabase dataBase = admin.getWritableDatabase();
+                Cursor fila = dataBase.rawQuery("select * from resultados", null);
+
+                if (fila.moveToFirst()){
+
+                    for (int i = 0; i < fila.getCount(); i++){
+                        row.add(new String[]{
+                                fila.getString(0),
+                                fila.getString(1),
+                                fila.getString(2),
+                                fila.getString(3),
+                                fila.getString(4),
+                                fila.getString(5),
+                                fila.getString(6),
+                                fila.getString(7),
+                                fila.getString(8),
+                                fila.getString(9),
+                                fila.getString(10),
+                                fila.getString(11),
+                                fila.getString(12)});
+                        fila.moveToNext();
+                    }
+
+                    //dataBase.close();
+                } else {
+                    CharSequence text = "No hay resultados guardados";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(getContext(), text, duration);
+                    toast.show();
+                    //dataBase.close();
+                }
+
+                tabla.addDatos(row, fila.getCount());
+                dataBase.close();
+            }
+        });
+
         return view;
     }
 

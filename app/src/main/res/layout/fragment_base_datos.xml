@@ -18,6 +18,16 @@
             android:gravity="center"
             android:text="@string/title_tab2"
             android:textSize="24sp"/>
+
+        <Button
+            android:id="@+id/btnActualizar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="@string/btn_actualizar" />
     </LinearLayout>
 
 
@@ -30,7 +40,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="25dp"
             android:layout_marginRight="15dp"/>
     </ScrollView>
 
