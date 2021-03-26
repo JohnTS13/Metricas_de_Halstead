@@ -1,0 +1,10 @@
+public class Mi_Clase_1 {
+public static void main(String[] ar) {
+int inc ;
+{
+inc = 0;
+for( inc ; inc <= 12 ; inc ++ ) { 
+System.out.printf("12 * "+ inc + " = " + 12 * inc + "\n");
+}
+}
+}

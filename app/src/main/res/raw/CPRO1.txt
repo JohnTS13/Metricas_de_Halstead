@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+public class demo2 {
+public static void main(String[] ar) {
+Scanner teclado = new Scanner(System.in);
+int n1 , n2 ;
+System.out.printf("Ingrese primer valor:");
+n1 = teclado.nextInt();
+System.out.printf("Ingrese segundo valor:");
+n2 = teclado.nextInt();
+
+System.out.printf("La multiplicación es :"+n1*n2);
+
+}
+}
