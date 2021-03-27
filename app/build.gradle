@@ -3,6 +3,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('C:\\Users\\Karla\\Downloads\\Metricas_de_Halstead\\app\\debug\\app-debug.apk')
+            storePassword 'karlit05*'
+            keyPassword 'karlit05*'
+            keyAlias 'Metricas'
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
